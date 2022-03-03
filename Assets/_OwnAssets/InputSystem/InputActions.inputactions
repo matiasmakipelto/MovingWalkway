@@ -198,8 +198,30 @@
                 },
                 {
                     "name": "",
+                    "id": "cecfecb6-80d7-46b0-a740-36f6142c4e8c",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c6796148-80dc-48b1-8bd1-d4319d400a45",
                     "path": "<WMRSpatialController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftTrigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2be12d39-af2b-4eb7-98b5-916b56c873f1",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -231,6 +253,17 @@
                 },
                 {
                     "name": "",
+                    "id": "19b9b20c-135d-4d2f-94bd-a4d3c4829656",
+                    "path": "<XRController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8e6cf3f2-5342-493b-8329-acd766a57798",
                     "path": "<WMRSpatialController>{RightHand}/joystickClicked",
                     "interactions": "",
@@ -253,8 +286,30 @@
                 },
                 {
                     "name": "",
+                    "id": "b7d495f2-2b63-41e3-9e5d-478b48036a87",
+                    "path": "<XRController>{LeftHand}/joystickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftJoystickClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a2e6ca4d-7975-4688-930a-8fabfecbb103",
                     "path": "<WMRSpatialController>{LeftHand}/touchpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e87d56e8-a055-4953-9fd9-047b78f029eb",
+                    "path": "<XRController>{LeftHand}/touchpadClicked",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -314,17 +369,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "A",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "43e5a7d1-c2fb-4e87-b146-a2fcc9dee8ea",
-                    "path": "<XRController>{RightHand}/userPresence",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "B",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
