@@ -18,8 +18,19 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ae718c8b-8dee-411b-b04b-111b57a5c7e2",
-                    "path": "<XRController>{RightHand}/primaryButton",
+                    "id": "98a3c71a-fc85-4e10-ba67-16d54d5fb65e",
+                    "path": "<XRController>{RightHand}/touchpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeMovementSystem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0b56525-5132-4719-9516-14e9048a0a09",
+                    "path": "<WMRSpatialController>{RightHand}/touchpadClicked",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -142,7 +153,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "Test",
                     "type": "Button",
                     "id": "2e809a47-37f1-4fac-9d81-f2be5f55e11d",
                     "expectedControlType": "Button",
@@ -369,6 +380,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9577622-d98f-493c-b886-167fdd1792fa",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -84,6 +84,11 @@ public class InputTest : MonoBehaviour
     public void Test(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
             Debug.Log("test: " + context.phase);
+
+            GameObject changeNotifier = GameObject.Find("ChangeNotifier");
+            changeNotifier.GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 }
