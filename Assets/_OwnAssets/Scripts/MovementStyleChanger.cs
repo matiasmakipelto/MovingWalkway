@@ -10,6 +10,9 @@ public class MovementStyleChanger : MonoBehaviour
     public GameObject locomotionSystem;
     private TeleportationProvider teleportationProvider;
     private ContinuousMoveProviderBase continuousMoveProvider;
+    public GameObject leftHandController;
+    public GameObject rightHandController;
+    public GameObject reticle;
 
 
     public GameObject changeNotifier;
@@ -19,9 +22,9 @@ public class MovementStyleChanger : MonoBehaviour
     private GameObject movingWalkwayNotifier;
     private bool fadeOut;
     private bool fadeIn;
-    public int notificationLength;
-    private int notificationTimer;
-    private float deltaAlpha = 0.02f;
+    public float notificationLength;
+    public float fadeLength;
+    private float notificationTimer;
 
     public MovementStyle movementStyle;
     public enum MovementStyle
@@ -44,36 +47,37 @@ public class MovementStyleChanger : MonoBehaviour
         SetMovementStyle();
     }
 
-    public void ChangeMovementStyle(InputAction.CallbackContext context)
+    public void ChangeMovementStyle()
     {
-        if (context.performed)
+        switch (movementStyle)
         {
-            switch (movementStyle)
-            {
-                case MovementStyle.ContinuousMovement:
-                    movementStyle = MovementStyle.Teleportation;
-                    break;
+            case MovementStyle.ContinuousMovement:
+                movementStyle = MovementStyle.Teleportation;
+                break;
 
-                case MovementStyle.Teleportation:
-                    movementStyle = MovementStyle.MovingWalkway;
-                    break;
+            case MovementStyle.Teleportation:
+                movementStyle = MovementStyle.MovingWalkway;
+                break;
 
-                case MovementStyle.MovingWalkway:
-                    movementStyle = MovementStyle.ContinuousMovement;
-                    break;
-            }
-
-            SetMovementStyle();
+            case MovementStyle.MovingWalkway:
+                movementStyle = MovementStyle.ContinuousMovement;
+                break;
         }
+
+        SetMovementStyle();
     }
 
     public void SetMovementStyle()
     {
-        Debug.Log("Movement Style Changed");
+        Debug.Log("Movement Style: " + movementStyle);
 
-        // Assign others false every time so that the application can be started with different values
+
+
+
+        // Notify
         switch (movementStyle)
         {
+            // Assign others false every time so that the application can be started with different values
             case MovementStyle.ContinuousMovement:
                 continuousMoveProvider.enabled = true;
                 teleportationProvider.enabled = false;
@@ -101,14 +105,40 @@ public class MovementStyleChanger : MonoBehaviour
 
         canvasGroup.alpha = 0f; // In case movement style is changed before canvas disappears
         fadeIn = true;
+
+
+
+
+        // Change line visual
+        var leftHandLine = leftHandController.GetComponent<XRInteractorLineVisual>();
+        var rightHandLine = rightHandController.GetComponent<XRInteractorLineVisual>();
+        switch (movementStyle)
+        {
+            case MovementStyle.ContinuousMovement:
+                leftHandLine.enabled = false;
+                reticle.SetActive(false);
+                break;
+
+            case MovementStyle.Teleportation:
+                leftHandLine.enabled = true;
+                leftHandLine.reticle = null;
+                reticle.SetActive(false);
+                break;
+
+            case MovementStyle.MovingWalkway:
+                leftHandLine.enabled = true;
+                leftHandLine.reticle = reticle;
+                reticle.SetActive(true);
+                break;
+        }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         // Notification
         if (fadeIn)
         {
-            canvasGroup.alpha += deltaAlpha;
+            canvasGroup.alpha += Time.deltaTime / fadeLength;
 
             if (canvasGroup.alpha >= 1f)
             {
@@ -117,22 +147,19 @@ public class MovementStyleChanger : MonoBehaviour
             }
         }
 
-        if (notificationTimer > 0)
+        if (notificationTimer > 0f)
         {
-            notificationTimer--;
-            if (notificationTimer == 0)
+            notificationTimer -= Time.deltaTime;
+            if (notificationTimer <= 0f)
                 fadeOut = true;
         }
 
         if (fadeOut)
         {
-            canvasGroup.alpha -= deltaAlpha;
+            canvasGroup.alpha -= Time.deltaTime / fadeLength;
             if (canvasGroup.alpha <= 0f)
                 fadeOut = false;
         }
-
-
-
     }
 }
 
