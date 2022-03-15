@@ -17,4 +17,13 @@ public class Input : MonoBehaviour
     {
         reticle.GetComponent<Reticle>().rotationSpeed = ((Vector2)value.Get()).x;
     }
+
+    void OnPlaceWalkway(InputValue value)
+    {
+        if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
+            return;
+
+        Debug.Log("placed");
+        reticle.GetComponent<Reticle>().placeWalkway();
+    }
 }

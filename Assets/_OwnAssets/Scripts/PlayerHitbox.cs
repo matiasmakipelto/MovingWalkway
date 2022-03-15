@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-    private Rigidbody rigidbody;
     private BoxCollider boxCollider;
-    private Transform camera;
+    private Transform cam; // camera
     // Start is called before the first frame update
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        camera = transform.GetChild(0).GetChild(0);
-        rigidbody = GetComponent<Rigidbody>();
+        cam = transform.GetChild(0).GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        boxCollider.center = new Vector3(camera.position.x - transform.position.x, boxCollider.center.y, camera.position.z - transform.position.z);
+        boxCollider.center = new Vector3(cam.localPosition.x, boxCollider.center.y, cam.localPosition.z);
     }
 }

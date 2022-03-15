@@ -7,13 +7,13 @@ public class Conveyor : MonoBehaviour
     public float speed;
     public float textureSpeedMultiplier;
 
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private Vector3 movement;
     private float texturePosition;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -28,7 +28,7 @@ public class Conveyor : MonoBehaviour
         Debug.Log("Collision");
         movement = transform.forward * speed;
 
-        rigidbody.position -= movement;
-        rigidbody.MovePosition(rigidbody.position + movement);
+        rb.position -= movement;
+        rb.MovePosition(rb.position + movement);
     }
 }

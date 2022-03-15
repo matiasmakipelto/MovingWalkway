@@ -6,6 +6,8 @@ public class Reticle : MonoBehaviour
 {
     public GameObject shape;
     public GameObject controller;
+    public GameObject walkwayPrefab;
+    private GameObject walkwayInstance;
     public bool playerCentric;
     public bool manualRotation;
     public float rotationSpeed;
@@ -28,5 +30,23 @@ public class Reticle : MonoBehaviour
         Debug.Log(value.x);
 
         shape.transform.eulerAngles = new Vector3(0, shape.transform.eulerAngles.y + value.x, 0);
+    }
+
+    public void placeWalkway()
+    {
+        // Make new walkway
+        if (!walkwayInstance)
+        {
+            walkwayInstance = Instantiate(walkwayPrefab, transform.position, shape.transform.rotation);
+        }
+
+        // Reposition old walkway
+        else
+        {
+            walkwayInstance.transform.position = transform.position;
+            walkwayInstance.transform.rotation = shape.transform.rotation;
+        }
+
+            
     }
 }

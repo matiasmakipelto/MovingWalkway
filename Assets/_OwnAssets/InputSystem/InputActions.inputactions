@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PlaceWalkway",
+                    "type": "Button",
+                    "id": "cc0d8f56-b5d9-47be-8a11-885757f0e6fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -40,6 +49,17 @@
                     "name": "",
                     "id": "a0b56525-5132-4719-9516-14e9048a0a09",
                     "path": "<WMRSpatialController>{RightHand}/touchpadClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeMovementSystem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d9b9b1c-f684-44e0-8a28-8eb8429d95ed",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -101,6 +121,28 @@
                     "action": "RotateReticle",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d0076279-4732-47b0-9686-12ed9bd8f80e",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceWalkway",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ff8bbdf-dc65-4493-8418-83f71c8bf5f7",
+                    "path": "<WMRSpatialController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceWalkway",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
