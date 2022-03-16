@@ -26,4 +26,9 @@ public class Input : MonoBehaviour
         Debug.Log("placed");
         reticle.GetComponent<Reticle>().placeWalkway();
     }
+
+    void OnPause(InputValue value)
+    {
+        gameManager.GetComponent<Pause>().TogglePause();
+    }
 }

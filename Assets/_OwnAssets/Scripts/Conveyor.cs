@@ -11,16 +11,21 @@ public class Conveyor : MonoBehaviour
     private Vector3 movement;
     private float texturePosition;
 
+    private Material walkwayMaterial;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        walkwayMaterial = GetComponent<Renderer>().material;
     }
 
     private void FixedUpdate()
     {
         // Scroll texture
         texturePosition = texturePosition + speed * textureSpeedMultiplier;
-        //GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, texturePosition);
+        if (texturePosition > 1)
+            texturePosition--;
+        walkwayMaterial.mainTextureOffset = new Vector2(0, texturePosition);
     }
 
     private void OnCollisionStay(Collision collision)
