@@ -7,6 +7,7 @@ public class Input : MonoBehaviour
 {
     public GameObject gameManager;
     public GameObject reticle;
+    public GameObject teleportArea;
 
     void OnChangeMovementSystem()
     {
@@ -30,5 +31,10 @@ public class Input : MonoBehaviour
     void OnPause(InputValue value)
     {
         gameManager.GetComponent<Pause>().TogglePause();
+    }
+
+    void OnDebugTeleport(InputValue value)
+    {
+        teleportArea.GetComponent<DebugTeleport>().teleport();
     }
 }

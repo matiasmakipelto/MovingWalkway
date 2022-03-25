@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1010892747662880496}
   - component: {fileID: 1010892747662880498}
   m_Layer: 0
-  m_Name: MovingWalkway
+  m_Name: MovingWalkwayOriginal
   m_TagString: Conveyor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
