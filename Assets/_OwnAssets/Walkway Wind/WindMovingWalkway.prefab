@@ -14692,7 +14692,7 @@ GameObject:
   - component: {fileID: 4147382484305665212}
   - component: {fileID: 7666279650787784174}
   m_Layer: 0
-  m_Name: Wind
+  m_Name: WindMovingWalkway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,11 +6,25 @@ public class Reticle : MonoBehaviour
 {
     public GameObject shape;
     public GameObject controller;
-    public GameObject walkwayPrefab;
+    public GameObject manager;
+
+    public GameObject realisticWalkwayPrefab;
+    public GameObject realisticWalkwayNoSidesPrefab;
+    public GameObject windWalkwayPrefab;
+
+    private GameObject currentReticle; // The reticle corresponding to current style
+    private GameObject currentReticlePrefab;
+
     private GameObject walkwayInstance;
     public bool playerCentric;
     public bool manualRotation;
     public float rotationSpeed;
+
+    private void Start()
+    {
+        currentReticle = shape.transform.GetChild(0).gameObject;
+        currentReticlePrefab = realisticWalkwayPrefab;
+    }
 
     void Update()
     {
@@ -22,7 +36,38 @@ public class Reticle : MonoBehaviour
             shape.transform.eulerAngles = new Vector3(0, shape.transform.eulerAngles.y + rotationSpeed, 0);
     }
 
-    public void manualRotate(Vector2 value)
+    public void ChangeReticleInto(Menu.WalkwayStyle style)
+    {
+        // Disable all reticle styles
+        foreach (Transform child in shape.transform)
+            child.gameObject.SetActive(false);
+
+        // Enable correct reticle style
+        switch (style)
+        {
+            case Menu.WalkwayStyle.Realistic:
+                currentReticle = shape.transform.GetChild(0).gameObject;
+                currentReticlePrefab = realisticWalkwayPrefab;
+                break;
+
+            case Menu.WalkwayStyle.RealisticNoSides:
+                currentReticle = shape.transform.GetChild(1).gameObject;
+                currentReticlePrefab = realisticWalkwayNoSidesPrefab;
+                break;
+
+            case Menu.WalkwayStyle.Wind:
+                currentReticle = shape.transform.GetChild(2).gameObject;
+                currentReticlePrefab = windWalkwayPrefab;
+                break;
+        }
+    }
+
+    public void DisableReticle()
+    {
+        currentReticle.SetActive(false);
+    }
+
+    public void ManualRotate(Vector2 value)
     {
         if (manualRotation == false)
             return;
@@ -31,29 +76,21 @@ public class Reticle : MonoBehaviour
     }
 
     // Show reticle only when button is held
-    public void showReticle()
+    public void ShowReticle()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        currentReticle.SetActive(true);
     }
 
-    public void placeWalkway()
+    public void PlaceWalkway()
     {
-        // Make new walkway
-        if (!walkwayInstance)
-        {
-            walkwayInstance = Instantiate(walkwayPrefab, transform.position, shape.transform.rotation);
-        }
+        // Destroy old walkway
+        if (walkwayInstance)
+            Destroy(walkwayInstance);
 
-        // Reposition old walkway
-        else
-        {
-            walkwayInstance.transform.position = transform.position;
-            walkwayInstance.transform.rotation = shape.transform.rotation;
-        }
+        // Make new walkway
+        walkwayInstance = Instantiate(currentReticlePrefab, transform.position, shape.transform.rotation);
 
         // Hide reticle
-        transform.GetChild(0).gameObject.SetActive(false);
-        Debug.Log(gameObject);
-        Debug.Log("hidden");
+        currentReticle.SetActive(false);
     }
 }

@@ -116,7 +116,7 @@ public class MovementStyleChanger : MonoBehaviour
         {
             case MovementStyle.ContinuousMovement:
                 leftHandLine.enabled = false;
-                reticle.transform.GetChild(0).gameObject.SetActive(false);
+                reticle.GetComponent<Reticle>().DisableReticle();
                 break;
 
             case MovementStyle.Teleportation:

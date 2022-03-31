@@ -6,7 +6,7 @@ public class DebugTeleport : MonoBehaviour
 {
     public GameObject player;
 
-    public void teleport()
+    public void Teleport()
     {
         if (!this.gameObject.activeInHierarchy)
             return;

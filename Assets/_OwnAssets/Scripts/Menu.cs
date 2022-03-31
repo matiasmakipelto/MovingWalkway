@@ -3,13 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Pause : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject reticle;
     public GameObject leftController;
     public GameObject rightController;
 
+    public WalkwayStyle walkwayStyle;
+    public enum WalkwayStyle
+    {
+        Realistic = 0,
+        RealisticNoSides = 1,
+        Wind = 2
+    }
+
     private bool lineWasOn;
+
+    public void ChangeWalkwayStyle(string style)
+    {
+        walkwayStyle = (WalkwayStyle)System.Enum.Parse(typeof(WalkwayStyle), style);
+        reticle.GetComponent<Reticle>().ChangeReticleInto(walkwayStyle);
+    }
 
     public void TogglePause()
     {

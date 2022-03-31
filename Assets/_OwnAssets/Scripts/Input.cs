@@ -28,18 +28,18 @@ public class Input : MonoBehaviour
             return;
 
         if (value.isPressed == true)
-            reticle.GetComponent<Reticle>().showReticle();
+            reticle.GetComponent<Reticle>().ShowReticle();
         else
-            reticle.GetComponent<Reticle>().placeWalkway();
+            reticle.GetComponent<Reticle>().PlaceWalkway();
     }
 
     void OnPause(InputValue value)
     {
-        gameManager.GetComponent<Pause>().TogglePause();
+        gameManager.GetComponent<Menu>().TogglePause();
     }
 
     void OnDebugTeleport(InputValue value)
     {
-        teleportArea.GetComponent<DebugTeleport>().teleport();
+        teleportArea.GetComponent<DebugTeleport>().Teleport();
     }
 }
