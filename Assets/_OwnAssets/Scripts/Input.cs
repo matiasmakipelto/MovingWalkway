@@ -16,6 +16,9 @@ public class Input : MonoBehaviour
 
     void OnRotateReticle(InputValue value)
     {
+        if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
+            return;
+
         reticle.GetComponent<Reticle>().rotationSpeed = ((Vector2)value.Get()).x;
     }
 
@@ -24,8 +27,10 @@ public class Input : MonoBehaviour
         if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
             return;
 
-        Debug.Log("placed");
-        reticle.GetComponent<Reticle>().placeWalkway();
+        if (value.isPressed == true)
+            reticle.GetComponent<Reticle>().showReticle();
+        else
+            reticle.GetComponent<Reticle>().placeWalkway();
     }
 
     void OnPause(InputValue value)

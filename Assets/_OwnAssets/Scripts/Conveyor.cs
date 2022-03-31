@@ -30,7 +30,6 @@ public class Conveyor : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Collision");
         movement = transform.forward * speed;
 
         rb.position -= movement;

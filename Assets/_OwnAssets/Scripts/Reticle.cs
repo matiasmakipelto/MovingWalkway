@@ -27,9 +27,13 @@ public class Reticle : MonoBehaviour
         if (manualRotation == false)
             return;
 
-        Debug.Log(value.x);
-
         shape.transform.eulerAngles = new Vector3(0, shape.transform.eulerAngles.y + value.x, 0);
+    }
+
+    // Show reticle only when button is held
+    public void showReticle()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void placeWalkway()
@@ -47,6 +51,9 @@ public class Reticle : MonoBehaviour
             walkwayInstance.transform.rotation = shape.transform.rotation;
         }
 
-            
+        // Hide reticle
+        transform.GetChild(0).gameObject.SetActive(false);
+        Debug.Log(gameObject);
+        Debug.Log("hidden");
     }
 }

@@ -111,24 +111,20 @@ public class MovementStyleChanger : MonoBehaviour
 
         // Change line visual
         var leftHandLine = leftHandController.GetComponent<XRInteractorLineVisual>();
-        var rightHandLine = rightHandController.GetComponent<XRInteractorLineVisual>();
+        //var rightHandLine = rightHandController.GetComponent<XRInteractorLineVisual>();
         switch (movementStyle)
         {
             case MovementStyle.ContinuousMovement:
                 leftHandLine.enabled = false;
-                reticle.SetActive(false);
+                reticle.transform.GetChild(0).gameObject.SetActive(false);
                 break;
 
             case MovementStyle.Teleportation:
                 leftHandLine.enabled = true;
-                leftHandLine.reticle = null;
-                reticle.SetActive(false);
                 break;
 
             case MovementStyle.MovingWalkway:
                 leftHandLine.enabled = true;
-                leftHandLine.reticle = reticle;
-                reticle.SetActive(true);
                 break;
         }
     }
