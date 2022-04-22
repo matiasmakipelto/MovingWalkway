@@ -20,6 +20,13 @@ public class Reticle : MonoBehaviour
     public bool manualRotation;
     public float rotationSpeed;
 
+    private float walkwaySpeedSliderValue = 1f;
+    public float walkwaySpeedMultiplier;
+    public float windSpeed;
+    public float windLifetime;
+    public float windEmissionSpeed;
+    public float windNoise;
+
     private void Start()
     {
         currentReticle = shape.transform.GetChild(0).gameObject;
@@ -90,7 +97,54 @@ public class Reticle : MonoBehaviour
         // Make new walkway
         walkwayInstance = Instantiate(currentReticlePrefab, transform.position, shape.transform.rotation);
 
+        // Change speed of new instance
+        walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+        if (walkwayInstance.GetComponent<ParticleController>())
+        {
+            ParticleController pc = walkwayInstance.GetComponent<ParticleController>();
+            pc.speed = walkwaySpeedSliderValue * windSpeed;
+            pc.lifetime = windLifetime / walkwaySpeedSliderValue;
+            pc.emissionSpeed = walkwaySpeedSliderValue * windEmissionSpeed;
+            pc.noise = windNoise / walkwaySpeedSliderValue;
+        }
+
         // Hide reticle
         currentReticle.SetActive(false);
+    }
+
+    public void ChangeWalkwaySpeed(float value)
+    {
+        walkwaySpeedSliderValue = value;
+
+        // Change existing instance's speed
+        if (walkwayInstance)
+        {
+            walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+
+            // Change wind animation speed of existing instance
+            if (manager.GetComponent<Menu>().walkwayStyle == Menu.WalkwayStyle.Wind)
+            {
+                ParticleController pc = walkwayInstance.GetComponentInChildren<ParticleController>();
+                pc.speed = walkwaySpeedSliderValue * windSpeed;
+                pc.lifetime = windLifetime / walkwaySpeedSliderValue;
+                pc.emissionSpeed = walkwaySpeedSliderValue * windEmissionSpeed;
+                pc.noise = windNoise / walkwaySpeedSliderValue;
+            }
+        }
+
+        // Change reticles' speeds
+        Conveyor[] walkwayReticles;
+        walkwayReticles = transform.GetComponentsInChildren<Conveyor>(true);
+        foreach (Conveyor conveyor in walkwayReticles)
+        {
+            conveyor.speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+        }
+
+        // Change wind animation speed of reticle
+        ParticleController pc2 = transform.GetComponentInChildren<ParticleController>(true);
+        pc2.speed = walkwaySpeedSliderValue  * windSpeed;
+        pc2.lifetime = windLifetime / walkwaySpeedSliderValue;
+        pc2.emissionSpeed = walkwaySpeedSliderValue * windEmissionSpeed;
+        pc2.noise = windNoise / walkwaySpeedSliderValue;
     }
 }

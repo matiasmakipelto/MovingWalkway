@@ -12,12 +12,16 @@ public class ParticleController : MonoBehaviour
     public float lifetime;
     public float emissionSpeed;
     public float randomizePosition;
+    public float noise;
 
     // Update is called once per frame
     void Update()
     {
-        if (particle1.main.startSpeed.constant != speed || particle1.main.startLifetime.constant != lifetime || particle1.emission.rateOverTimeMultiplier != emissionSpeed
-            || particle1.shape.randomPositionAmount != randomizePosition)
+        if (particle1.velocityOverLifetime.speedModifierMultiplier != speed ||
+            particle1.main.startLifetime.constant != lifetime ||
+            particle1.emission.rateOverTimeMultiplier != emissionSpeed ||
+            particle1.shape.randomPositionAmount != randomizePosition ||
+            particle1.noise.positionAmount.constant != noise)
         {
             updateParticles(particle1);
             updateParticles(particle2);
@@ -32,9 +36,14 @@ public class ParticleController : MonoBehaviour
 
         var main = particle.main;
         main.startLifetime = lifetime;
-        main.startSpeed = speed;
+
+        var velocityOverLifetime = particle.velocityOverLifetime;
+        velocityOverLifetime.speedModifierMultiplier = speed;
 
         var shape = particle.shape;
         shape.randomPositionAmount = randomizePosition;
+
+        var particleNoise = particle.noise;
+        particleNoise.positionAmount = noise;
     }
 }

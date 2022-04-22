@@ -8,9 +8,13 @@ public class Input : MonoBehaviour
     public GameObject gameManager;
     public GameObject reticle;
     public GameObject teleportArea;
+    public GameObject pauseMenu;
 
     void OnChangeMovementSystem()
     {
+        if (pauseMenu.activeSelf)
+            return;
+
         gameManager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
     }
 
