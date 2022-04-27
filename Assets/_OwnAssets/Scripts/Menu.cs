@@ -15,7 +15,8 @@ public class Menu : MonoBehaviour
     {
         Realistic = 0,
         RealisticNoSides = 1,
-        Wind = 2
+        Wind = 2,
+        Hologram = 3
     }
 
     private bool lineWasOn;

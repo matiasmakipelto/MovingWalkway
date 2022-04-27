@@ -11,6 +11,7 @@ public class Reticle : MonoBehaviour
     public GameObject realisticWalkwayPrefab;
     public GameObject realisticWalkwayNoSidesPrefab;
     public GameObject windWalkwayPrefab;
+    public GameObject hologramWalkwayPrefab;
 
     private GameObject currentReticle; // The reticle corresponding to current style
     private GameObject currentReticlePrefab;
@@ -65,6 +66,11 @@ public class Reticle : MonoBehaviour
             case Menu.WalkwayStyle.Wind:
                 currentReticle = shape.transform.GetChild(2).gameObject;
                 currentReticlePrefab = windWalkwayPrefab;
+                break;
+
+            case Menu.WalkwayStyle.Hologram:
+                currentReticle = shape.transform.GetChild(3).gameObject;
+                currentReticlePrefab = hologramWalkwayPrefab;
                 break;
         }
     }

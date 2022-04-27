@@ -105,6 +105,8 @@ public class MovementStyleChanger : MonoBehaviour
 
         canvasGroup.alpha = 0f; // In case movement style is changed before canvas disappears
         fadeIn = true;
+        fadeOut = false;
+        notificationTimer = 0f;
 
 
 
