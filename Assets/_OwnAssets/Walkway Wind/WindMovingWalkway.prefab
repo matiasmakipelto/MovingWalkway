@@ -665,7 +665,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 3, z: 0}
+    m_Position: {x: 0, y: 2.6, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -5054,6 +5054,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.02
   textureSpeedMultiplier: 1.5874
+  reverse: 0
+  angularMovement: 0
 --- !u!1 &3269482632686490146
 GameObject:
   m_ObjectHideFlags: 0
@@ -5719,7 +5721,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 3, z: 0}
+    m_Position: {x: 0, y: 2.6, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
@@ -10561,7 +10563,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 3, z: 0}
+    m_Position: {x: 0, y: 2.6, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
