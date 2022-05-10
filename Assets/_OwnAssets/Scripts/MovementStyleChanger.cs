@@ -79,6 +79,8 @@ public class MovementStyleChanger : MonoBehaviour
         {
             // Assign others false every time so that the application can be started with different values
             case MovementStyle.ContinuousMovement:
+                // Disable input actions so that teleportations will not get queued
+                leftHandController.GetComponent<XRBaseController>().enableInputActions = false;
                 continuousMoveProvider.enabled = true;
                 teleportationProvider.enabled = false;
                 continuousMovementNotifier.SetActive(true);
@@ -87,6 +89,7 @@ public class MovementStyleChanger : MonoBehaviour
                 break;
 
             case MovementStyle.Teleportation:
+                leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
                 continuousMoveProvider.enabled = false;
                 teleportationProvider.enabled = true;
                 continuousMovementNotifier.SetActive(false);
@@ -95,6 +98,7 @@ public class MovementStyleChanger : MonoBehaviour
                 break;
 
             case MovementStyle.MovingWalkway:
+                leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
                 continuousMoveProvider.enabled = false;
                 teleportationProvider.enabled = false;
                 continuousMovementNotifier.SetActive(false);
