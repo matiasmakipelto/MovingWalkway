@@ -241,7 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ca0c3b2c7f0a1418c22eee0b35cf71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.0687
+  speed: 1
+  speedMultiplier: 0.0687
   textureSpeedMultiplier: 0.373
   reverse: 1
   angularMovement: 1

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Conveyor
+  - RoundWalkway
   layers:
   - Default
   - TransparentFX

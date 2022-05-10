@@ -5,6 +5,7 @@ using UnityEngine;
 public class Conveyor : MonoBehaviour
 {
     public float speed;
+    public float speedMultiplier; // Used for walkways with different lengths
     public float textureSpeedMultiplier;
     public bool reverse;
     public bool angularMovement;
@@ -24,7 +25,7 @@ public class Conveyor : MonoBehaviour
     private void FixedUpdate()
     {
         // Scroll texture
-        texturePosition = texturePosition + speed * textureSpeedMultiplier * (reverse ? -1 : 1);
+        texturePosition = texturePosition + speed * speedMultiplier * textureSpeedMultiplier * (reverse ? -1 : 1);
         if (texturePosition > 1)
             texturePosition--;
         else if (texturePosition < 0)
@@ -43,7 +44,7 @@ public class Conveyor : MonoBehaviour
         // Straight movement
         if (!angularMovement)
         {
-            movement = transform.forward * speed * (reverse ? -1 : 1);
+            movement = transform.forward * speed * speedMultiplier * (reverse ? -1 : 1);
 
             rb.position -= movement;
             rb.MovePosition(rb.position + movement);
@@ -51,8 +52,8 @@ public class Conveyor : MonoBehaviour
         // Angular movement
         else
         {
-            Vector3 eulerAngleVelocity = Vector3.back * speed * (reverse ? -1 : 1);
-            Vector3 eulerAngleVelocity2 = Vector3.forward * speed * (reverse ? -1 : 1);
+            Vector3 eulerAngleVelocity = Vector3.back * speed * speedMultiplier * (reverse ? -1 : 1);
+            Vector3 eulerAngleVelocity2 = Vector3.forward * speed * speedMultiplier * (reverse ? -1 : 1);
 
             Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity);
             Quaternion deltaRotation2 = Quaternion.Euler(eulerAngleVelocity2);

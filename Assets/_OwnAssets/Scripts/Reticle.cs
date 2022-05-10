@@ -22,11 +22,13 @@ public class Reticle : MonoBehaviour
     public float rotationSpeed;
 
     private float walkwaySpeedSliderValue = 1f;
-    public float walkwaySpeedMultiplier;
     public float windSpeed;
     public float windLifetime;
     public float windEmissionSpeed;
     public float windNoise;
+
+    public GameObject[] walkwayInstances; // The static walkways
+    public UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousMoveProvider continuousMoveProvider;
 
     private void Start()
     {
@@ -104,7 +106,7 @@ public class Reticle : MonoBehaviour
         walkwayInstance = Instantiate(currentReticlePrefab, transform.position, shape.transform.rotation);
 
         // Change speed of new instance
-        walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+        walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue;
         if (walkwayInstance.GetComponent<ParticleController>())
         {
             ParticleController pc = walkwayInstance.GetComponent<ParticleController>();
@@ -125,7 +127,7 @@ public class Reticle : MonoBehaviour
         // Change existing instance's speed
         if (walkwayInstance)
         {
-            walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+            walkwayInstance.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue;
 
             // Change wind animation speed of existing instance
             if (manager.GetComponent<Menu>().walkwayStyle == Menu.WalkwayStyle.Wind)
@@ -138,12 +140,18 @@ public class Reticle : MonoBehaviour
             }
         }
 
+        // Change static walkways' speeds
+        foreach(GameObject walkway in walkwayInstances)
+        {
+            walkway.GetComponentInChildren<Conveyor>().speed = walkwaySpeedSliderValue;
+        }
+
         // Change reticles' speeds
         Conveyor[] walkwayReticles;
         walkwayReticles = transform.GetComponentsInChildren<Conveyor>(true);
         foreach (Conveyor conveyor in walkwayReticles)
         {
-            conveyor.speed = walkwaySpeedSliderValue * walkwaySpeedMultiplier;
+            conveyor.speed = walkwaySpeedSliderValue;
         }
 
         // Change wind animation speed of reticle
@@ -152,5 +160,8 @@ public class Reticle : MonoBehaviour
         pc2.lifetime = windLifetime / walkwaySpeedSliderValue;
         pc2.emissionSpeed = walkwaySpeedSliderValue * windEmissionSpeed;
         pc2.noise = windNoise / walkwaySpeedSliderValue;
+
+        // Also change continuous movement speed
+        continuousMoveProvider.moveSpeed = walkwaySpeedSliderValue;
     }
 }
