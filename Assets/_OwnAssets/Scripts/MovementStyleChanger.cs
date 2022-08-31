@@ -17,9 +17,10 @@ public class MovementStyleChanger : MonoBehaviour
 
     public GameObject changeNotifier;
     private CanvasGroup canvasGroup;
-    private GameObject continuousMovementNotifier;
-    private GameObject teleportationNotifier;
-    private GameObject movingWalkwayNotifier;
+    public GameObject continuousMovementNotifier;
+    public GameObject teleportationNotifier;
+    public GameObject movingWalkwayNotifier;
+    public GameObject noneNotifier;
     private bool fadeOut;
     private bool fadeIn;
     public float notificationLength;
@@ -29,9 +30,10 @@ public class MovementStyleChanger : MonoBehaviour
     public MovementStyle movementStyle;
     public enum MovementStyle
     {
-        ContinuousMovement = 0,
-        Teleportation = 1,
-        MovingWalkway = 2
+        ContinuousMovement,
+        None
+        //Teleportation,
+        //MovingWalkway
     }
 
     private void Start()
@@ -39,9 +41,6 @@ public class MovementStyleChanger : MonoBehaviour
         teleportationProvider = locomotionSystem.GetComponent<TeleportationProvider>();
         continuousMoveProvider = locomotionSystem.GetComponent<ContinuousMoveProviderBase>();
         canvasGroup = changeNotifier.GetComponent<CanvasGroup>();
-        continuousMovementNotifier = changeNotifier.transform.GetChild(0).gameObject;
-        teleportationNotifier = changeNotifier.transform.GetChild(1).gameObject;
-        movingWalkwayNotifier = changeNotifier.transform.GetChild(2).gameObject;
         canvasGroup.alpha = 0f;
 
         SetMovementStyle();
@@ -52,16 +51,23 @@ public class MovementStyleChanger : MonoBehaviour
         switch (movementStyle)
         {
             case MovementStyle.ContinuousMovement:
-                movementStyle = MovementStyle.Teleportation;
+                movementStyle = MovementStyle.None;
                 break;
-
-            case MovementStyle.Teleportation:
-                movementStyle = MovementStyle.MovingWalkway;
-                break;
-
-            case MovementStyle.MovingWalkway:
+            case MovementStyle.None:
                 movementStyle = MovementStyle.ContinuousMovement;
                 break;
+
+            //case MovementStyle.ContinuousMovement:
+            //    movementStyle = MovementStyle.Teleportation;
+            //    break;
+            //
+            //case MovementStyle.Teleportation:
+            //    movementStyle = MovementStyle.MovingWalkway;
+            //    break;
+            //
+            //case MovementStyle.MovingWalkway:
+            //    movementStyle = MovementStyle.ContinuousMovement;
+            //    break;
         }
 
         SetMovementStyle();
@@ -88,23 +94,34 @@ public class MovementStyleChanger : MonoBehaviour
                 movingWalkwayNotifier.SetActive(false);
                 break;
 
-            case MovementStyle.Teleportation:
-                leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
-                continuousMoveProvider.enabled = false;
-                teleportationProvider.enabled = true;
-                continuousMovementNotifier.SetActive(false);
-                teleportationNotifier.SetActive(true);
-                movingWalkwayNotifier.SetActive(false);
-                break;
-
-            case MovementStyle.MovingWalkway:
-                leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
+            case MovementStyle.None:
+                leftHandController.GetComponent<XRBaseController>().enableInputActions = false;
                 continuousMoveProvider.enabled = false;
                 teleportationProvider.enabled = false;
                 continuousMovementNotifier.SetActive(false);
                 teleportationNotifier.SetActive(false);
-                movingWalkwayNotifier.SetActive(true);
+                movingWalkwayNotifier.SetActive(false);
+                noneNotifier.SetActive(true);
                 break;
+
+
+            //case MovementStyle.Teleportation:
+            //    leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
+            //    continuousMoveProvider.enabled = false;
+            //    teleportationProvider.enabled = true;
+            //    continuousMovementNotifier.SetActive(false);
+            //    teleportationNotifier.SetActive(true);
+            //    movingWalkwayNotifier.SetActive(false);
+            //    break;
+            //
+            //case MovementStyle.MovingWalkway:
+            //    leftHandController.GetComponent<XRBaseController>().enableInputActions = true;
+            //    continuousMoveProvider.enabled = false;
+            //    teleportationProvider.enabled = false;
+            //    continuousMovementNotifier.SetActive(false);
+            //    teleportationNotifier.SetActive(false);
+            //    movingWalkwayNotifier.SetActive(true);
+            //    break;
         }
 
         canvasGroup.alpha = 0f; // In case movement style is changed before canvas disappears
@@ -125,13 +142,18 @@ public class MovementStyleChanger : MonoBehaviour
                 reticle.GetComponent<Reticle>().DisableReticle();
                 break;
 
-            case MovementStyle.Teleportation:
-                leftHandLine.enabled = true;
+            case MovementStyle.None:
+                leftHandLine.enabled = false;
+                reticle.GetComponent<Reticle>().DisableReticle();
                 break;
 
-            case MovementStyle.MovingWalkway:
-                leftHandLine.enabled = true;
-                break;
+            //case MovementStyle.Teleportation:
+            //    leftHandLine.enabled = true;
+            //    break;
+            //
+            //case MovementStyle.MovingWalkway:
+            //    leftHandLine.enabled = true;
+            //    break;
         }
     }
 

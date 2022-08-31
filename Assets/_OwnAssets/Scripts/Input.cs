@@ -18,24 +18,24 @@ public class Input : MonoBehaviour
         gameManager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
     }
 
-    void OnRotateReticle(InputValue value)
-    {
-        if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
-            return;
-
-        reticle.GetComponent<Reticle>().rotationSpeed = ((Vector2)value.Get()).x;
-    }
-
-    void OnPlaceWalkway(InputValue value)
-    {
-        if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
-            return;
-
-        if (value.isPressed == true)
-            reticle.GetComponent<Reticle>().ShowReticle();
-        else
-            reticle.GetComponent<Reticle>().PlaceWalkway();
-    }
+    //void OnRotateReticle(InputValue value)
+    //{
+    //    if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
+    //        return;
+    //
+    //    reticle.GetComponent<Reticle>().rotationSpeed = ((Vector2)value.Get()).x;
+    //}
+    //
+    //void OnPlaceWalkway(InputValue value)
+    //{
+    //    if (gameManager.GetComponent<MovementStyleChanger>().movementStyle != MovementStyleChanger.MovementStyle.MovingWalkway)
+    //        return;
+    //
+    //    if (value.isPressed == true)
+    //        reticle.GetComponent<Reticle>().ShowReticle();
+    //    else
+    //        reticle.GetComponent<Reticle>().PlaceWalkway();
+    //}
 
     void OnPause(InputValue value)
     {
