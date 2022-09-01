@@ -9,14 +9,18 @@ public class Menu : MonoBehaviour
     public GameObject reticle;
     public GameObject leftController;
     public GameObject rightController;
+    public GameObject hologramWalkway;
+    public GameObject realisticNoSidesWalkway;
+    public GameObject realistinWalkway;
+    public GameObject windWalkway;
 
     public WalkwayStyle walkwayStyle;
     public enum WalkwayStyle
     {
-        Realistic = 0,
-        RealisticNoSides = 1,
-        Wind = 2,
-        Hologram = 3
+        Realistic,
+        RealisticNoSides,
+        Wind,
+        Hologram
     }
 
     private bool lineWasOn;
@@ -24,7 +28,12 @@ public class Menu : MonoBehaviour
     public void ChangeWalkwayStyle(string style)
     {
         walkwayStyle = (WalkwayStyle)System.Enum.Parse(typeof(WalkwayStyle), style);
-        reticle.GetComponent<Reticle>().ChangeReticleInto(walkwayStyle);
+        //reticle.GetComponent<Reticle>().ChangeReticleInto(walkwayStyle);
+
+        hologramWalkway.SetActive(walkwayStyle == WalkwayStyle.Hologram);
+        realisticNoSidesWalkway.SetActive(walkwayStyle == WalkwayStyle.RealisticNoSides);
+        realistinWalkway.SetActive(walkwayStyle == WalkwayStyle.Realistic);
+        windWalkway.SetActive(walkwayStyle == WalkwayStyle.Wind);
     }
 
     public void TogglePause()

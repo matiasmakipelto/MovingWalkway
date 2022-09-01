@@ -90,8 +90,7 @@ public class MovementStyleChanger : MonoBehaviour
                 continuousMoveProvider.enabled = true;
                 teleportationProvider.enabled = false;
                 continuousMovementNotifier.SetActive(true);
-                teleportationNotifier.SetActive(false);
-                movingWalkwayNotifier.SetActive(false);
+                noneNotifier.SetActive(false);
                 break;
 
             case MovementStyle.None:
@@ -99,8 +98,6 @@ public class MovementStyleChanger : MonoBehaviour
                 continuousMoveProvider.enabled = false;
                 teleportationProvider.enabled = false;
                 continuousMovementNotifier.SetActive(false);
-                teleportationNotifier.SetActive(false);
-                movingWalkwayNotifier.SetActive(false);
                 noneNotifier.SetActive(true);
                 break;
 
@@ -139,14 +136,16 @@ public class MovementStyleChanger : MonoBehaviour
         {
             case MovementStyle.ContinuousMovement:
                 leftHandLine.enabled = false;
-                reticle.GetComponent<Reticle>().DisableReticle();
                 break;
 
             case MovementStyle.None:
                 leftHandLine.enabled = false;
-                reticle.GetComponent<Reticle>().DisableReticle();
                 break;
-
+                
+            //case MovementStyle.ContinuousMovement:
+            //    leftHandLine.enabled = false;
+            //    reticle.GetComponent<Reticle>().DisableReticle();
+            //    break;
             //case MovementStyle.Teleportation:
             //    leftHandLine.enabled = true;
             //    break;
