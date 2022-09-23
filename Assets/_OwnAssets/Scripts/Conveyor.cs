@@ -35,12 +35,16 @@ public class Conveyor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!enabled) return;
+
         if (angularMovement)
             collision.rigidbody.constraints ^= RigidbodyConstraints.FreezeRotationY; // exclusive OR (flips the bit)
     }
 
     private void OnCollisionStay(Collision collision)
     {
+        if (!enabled) return;
+
         // Straight movement
         if (!angularMovement)
         {
@@ -65,6 +69,8 @@ public class Conveyor : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (!enabled) return;
+
         if (angularMovement)
             collision.rigidbody.constraints ^= RigidbodyConstraints.FreezeRotationY;
     }

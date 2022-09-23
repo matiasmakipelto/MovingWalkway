@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderText : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI text;
+
+    private void Start()
+    {
+        GetComponent<Slider>().value = GetComponent<Slider>().value + 0.01f;
+        GetComponent<Slider>().value = GetComponent<Slider>().value - 0.01f;
+    }
 
     public void ChangeVelocityText(float value)
     {

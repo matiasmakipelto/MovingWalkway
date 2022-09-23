@@ -12,6 +12,7 @@ public class Input : MonoBehaviour
 
     void OnChangeMovementSystem()
     {
+        return;
         if (pauseMenu.activeSelf)
             return;
 
