@@ -6,13 +6,10 @@ using UnityEngine.UI;
 public class SliderText : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI text;
-    public GameObject pauseMenu;
 
     private void Start()
     {
         GetComponent<Slider>().value = SliderValueSaver.loadValue();
-
-        pauseMenu.SetActive(false);
     }
 
     public void ChangeVelocityText(float value)

@@ -17,16 +17,25 @@ public class StartingMode : MonoBehaviour
     public GameObject locomotionSystem;
     public GameObject[] speedSetWalkways;
     public GameObject changingWalkway;
+    public GameObject[] uiSpeedGroup;
+    public GameObject[] uiModelGroup;
+    public Reticle reticle;
 
     void Start()
     {
+        reticle.ChangeWalkwaySpeed(SliderValueSaver.loadValue());
         switch(Style)
         {
             case Mode.MovingWalkway:
+                foreach(GameObject uiElement in uiModelGroup)
+                    uiElement.SetActive(false);
 
                 break;
 
             case Mode.ControllerMovement:
+                foreach (GameObject uiElement in uiModelGroup)
+                    uiElement.SetActive(false);
+
                 locomotionSystem.GetComponent<ContinuousMoveProviderBase>().enabled = true;
 
                 foreach (GameObject walkway in courseWalkways)
@@ -35,6 +44,8 @@ public class StartingMode : MonoBehaviour
                 break;
 
             case Mode.ModelComparison:
+                foreach (GameObject uiElement in uiSpeedGroup)
+                    uiElement.SetActive(false);
 
                 foreach (GameObject walkway in courseWalkways)
                     walkway.GetComponentInChildren<Conveyor>().enabled = false;
