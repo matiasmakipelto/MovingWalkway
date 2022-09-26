@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class SliderText : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI text;
+    public GameObject pauseMenu;
 
     private void Start()
     {
-        GetComponent<Slider>().value = GetComponent<Slider>().value + 0.01f;
-        GetComponent<Slider>().value = GetComponent<Slider>().value - 0.01f;
+        GetComponent<Slider>().value = SliderValueSaver.loadValue();
+
+        pauseMenu.SetActive(false);
     }
 
     public void ChangeVelocityText(float value)
