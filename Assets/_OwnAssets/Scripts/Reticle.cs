@@ -22,10 +22,6 @@ public class Reticle : MonoBehaviour
     public float rotationSpeed;
 
     private float walkwaySpeedSliderValue = 1f;
-    public float windSpeed;
-    public float windLifetime;
-    public float windEmissionSpeed;
-    public float windNoise;
 
     public GameObject[] walkwayInstances; // The static walkways
     public UnityEngine.XR.Interaction.Toolkit.ActionBasedContinuousMoveProvider continuousMoveProvider;
@@ -33,20 +29,20 @@ public class Reticle : MonoBehaviour
     public bool continuousMovementStart;
     public Conveyor[] walkwaysToFlipAtStart;
 
-    void Awake()
-    {
-        if (continuousMovementStart)
-        {
-            foreach (Conveyor script in walkwaysToFlipAtStart)
-            {
-                script.reverse = !script.reverse;
-            }
-        }
-        else
-        {
-            manager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
-        }
-    }
+    //void Awake()
+    //{
+    //    if (continuousMovementStart)
+    //    {
+    //        foreach (Conveyor script in walkwaysToFlipAtStart)
+    //        {
+    //            script.reverse = !script.reverse;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        manager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
+    //    }
+    //}
 
     //private void Start()
     //{
@@ -166,10 +162,10 @@ public class Reticle : MonoBehaviour
             ParticleController pc = walkway.GetComponentInChildren<ParticleController>(true);
             if (pc != null)
             {
-                pc.speed = walkwaySpeedSliderValue * windSpeed;
-                pc.lifetime = windLifetime / walkwaySpeedSliderValue;
-                pc.emissionSpeed = walkwaySpeedSliderValue * windEmissionSpeed;
-                pc.noise = windNoise / walkwaySpeedSliderValue;
+                pc.speed = walkwaySpeedSliderValue * pc.speed;
+                pc.lifetime = pc.lifetime / walkwaySpeedSliderValue;
+                pc.emissionSpeed = walkwaySpeedSliderValue * pc.emissionSpeed;
+                pc.noise = pc.noise / walkwaySpeedSliderValue;
             }
         }
 

@@ -20,6 +20,7 @@ public class StartingMode : MonoBehaviour
     public GameObject[] uiSpeedGroup;
     public GameObject[] uiModelGroup;
     public Reticle reticle;
+    public GameObject leftController;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class StartingMode : MonoBehaviour
                     uiElement.SetActive(false);
 
                 locomotionSystem.GetComponent<ContinuousMoveProviderBase>().enabled = true;
+                DisableTeleportation();
 
                 foreach (GameObject walkway in courseWalkways)
                     walkway.GetComponentInChildren<Conveyor>().enabled = false;
@@ -46,6 +48,8 @@ public class StartingMode : MonoBehaviour
             case Mode.ModelComparison:
                 foreach (GameObject uiElement in uiSpeedGroup)
                     uiElement.SetActive(false);
+
+                DisableTeleportation();
 
                 foreach (GameObject walkway in courseWalkways)
                     walkway.GetComponentInChildren<Conveyor>().enabled = false;
@@ -58,5 +62,13 @@ public class StartingMode : MonoBehaviour
                 break;
         }
             
+    }
+
+    private void DisableTeleportation()
+    {
+        locomotionSystem.GetComponent<TeleportationProvider>().enabled = false;
+        leftController.GetComponent<XRRayInteractor>().enabled = false;
+        leftController.GetComponent<LineRenderer>().enabled = false;
+        leftController.GetComponent<XRInteractorLineVisual>().enabled = false;
     }
 }

@@ -40,6 +40,7 @@ public class Menu : MonoBehaviour
     {
         if (!pauseMenu.activeSelf)
         {
+            pauseMenu.GetComponent<PauseMenuMover>().placeMenu();
             pauseMenu.SetActive(true);
             leftController.GetComponent<XRRayInteractor>().enabled = false;
             lineWasOn = leftController.GetComponent<LineRenderer>().enabled;
