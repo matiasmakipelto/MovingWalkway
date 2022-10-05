@@ -11771,7 +11771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdf8e148bf85b744962910ccb8ac7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Style: 2
+  Style: 0
   courseWalkways:
   - {fileID: 1901287018}
   - {fileID: 336404969}
