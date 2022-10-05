@@ -64,11 +64,19 @@ public class StartingMode : MonoBehaviour
             
     }
 
-    private void DisableTeleportation()
+    public void DisableTeleportation()
     {
         locomotionSystem.GetComponent<TeleportationProvider>().enabled = false;
         leftController.GetComponent<XRRayInteractor>().enabled = false;
         leftController.GetComponent<LineRenderer>().enabled = false;
         leftController.GetComponent<XRInteractorLineVisual>().enabled = false;
+    }
+
+    public void EnableTeleportation()
+    {
+        locomotionSystem.GetComponent<TeleportationProvider>().enabled = true;
+        leftController.GetComponent<XRRayInteractor>().enabled = true;
+        leftController.GetComponent<LineRenderer>().enabled = true;
+        leftController.GetComponent<XRInteractorLineVisual>().enabled = true;
     }
 }

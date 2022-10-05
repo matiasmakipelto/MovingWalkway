@@ -10,14 +10,13 @@ public class Input : MonoBehaviour
     public GameObject teleportArea;
     public GameObject pauseMenu;
 
-    void OnChangeMovementSystem()
-    {
-        return;
-        if (pauseMenu.activeSelf)
-            return;
-
-        gameManager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
-    }
+    //void OnChangeMovementSystem()
+    //{
+    //    if (pauseMenu.activeSelf)
+    //        return;
+    //
+    //    gameManager.GetComponent<MovementStyleChanger>().ChangeMovementStyle();
+    //}
 
     //void OnRotateReticle(InputValue value)
     //{
