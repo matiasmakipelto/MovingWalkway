@@ -49,8 +49,6 @@ public class StartingMode : MonoBehaviour
                 foreach (GameObject uiElement in uiSpeedGroup)
                     uiElement.SetActive(false);
 
-                DisableTeleportation();
-
                 foreach (GameObject walkway in courseWalkways)
                     walkway.GetComponentInChildren<Conveyor>().enabled = false;
 

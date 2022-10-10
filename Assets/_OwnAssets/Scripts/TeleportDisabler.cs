@@ -6,21 +6,21 @@ public class TeleportDisabler : MonoBehaviour
 {
     public StartingMode gameManager;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (gameManager.Style != StartingMode.Mode.MovingWalkway)
+        if (gameManager.Style == StartingMode.Mode.ControllerMovement)
             return;
 
-        if (collision.gameObject.GetComponent<Conveyor>() != null || collision.gameObject.GetComponentInChildren<Conveyor>(true) != null)
+        if (other.transform.parent.parent.name == "Player")
             gameManager.DisableTeleportation();
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (gameManager.Style != StartingMode.Mode.MovingWalkway)
+        if (gameManager.Style == StartingMode.Mode.ControllerMovement)
             return;
 
-        if (collision.gameObject.GetComponent<Conveyor>() != null || collision.gameObject.GetComponentInChildren<Conveyor>(true) != null)
+        if (other.transform.parent.parent.name == "Player")
             gameManager.EnableTeleportation();
     }
 }
