@@ -12,7 +12,10 @@ public class TeleportDisabler : MonoBehaviour
             return;
 
         if (other.transform.parent.parent.name == "Player")
+        {
+            gameManager.GetComponent<Menu>().onWalkway = true;
             gameManager.DisableTeleportation();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -21,6 +24,11 @@ public class TeleportDisabler : MonoBehaviour
             return;
 
         if (other.transform.parent.parent.name == "Player")
-            gameManager.EnableTeleportation();
+        {
+            gameManager.GetComponent<Menu>().onWalkway = false;
+
+            if (!gameManager.GetComponent<Menu>().pauseMenu.activeSelf)
+                gameManager.EnableTeleportation();
+        }
     }
 }

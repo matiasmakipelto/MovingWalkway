@@ -13,6 +13,7 @@ public class Menu : MonoBehaviour
     public GameObject realisticNoSidesWalkway;
     public GameObject realistinWalkway;
     public GameObject windWalkway;
+    public bool onWalkway;
 
     public WalkwayStyle walkwayStyle;
     public enum WalkwayStyle
@@ -23,7 +24,12 @@ public class Menu : MonoBehaviour
         Hologram
     }
 
-    private bool lineWasOn;
+    private StartingMode.Mode startingStyle;
+
+    private void Start()
+    {
+        startingStyle = GetComponent<StartingMode>().Style;
+    }
 
     public void ChangeWalkwayStyle(string style)
     {
@@ -42,10 +48,9 @@ public class Menu : MonoBehaviour
         {
             pauseMenu.GetComponent<PauseMenuMover>().placeMenu();
             pauseMenu.SetActive(true);
-            leftController.GetComponent<XRRayInteractor>().enabled = false;
-            lineWasOn = leftController.GetComponent<LineRenderer>().enabled;
-            leftController.GetComponent<LineRenderer>().enabled = false;
-            leftController.GetComponent<XRInteractorLineVisual>().enabled = false;
+
+            if (startingStyle != StartingMode.Mode.ControllerMovement)
+                GetComponent<StartingMode>().DisableTeleportation();
 
             rightController.GetComponent<XRRayInteractor>().enabled = true;
             rightController.GetComponent<LineRenderer>().enabled = true;
@@ -54,9 +59,11 @@ public class Menu : MonoBehaviour
         else
         {
             pauseMenu.SetActive(false);
-            leftController.GetComponent<XRRayInteractor>().enabled = true;
-            leftController.GetComponent<LineRenderer>().enabled = lineWasOn;
-            leftController.GetComponent<XRInteractorLineVisual>().enabled = lineWasOn;
+
+
+            if (startingStyle != StartingMode.Mode.ControllerMovement)
+                if (!onWalkway)
+                    GetComponent<StartingMode>().EnableTeleportation();
 
 
             rightController.GetComponent<XRRayInteractor>().enabled = false;

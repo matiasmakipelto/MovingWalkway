@@ -8643,7 +8643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &726718491
 Transform:
   m_ObjectHideFlags: 0
@@ -12050,6 +12050,7 @@ MonoBehaviour:
   realisticNoSidesWalkway: {fileID: 1965403034}
   realistinWalkway: {fileID: 990026999}
   windWalkway: {fileID: 1841119027}
+  onWalkway: 0
   walkwayStyle: 0
 --- !u!114 &1003203767
 MonoBehaviour:
@@ -12072,8 +12073,8 @@ MonoBehaviour:
   - {fileID: 1144958450}
   locomotionSystem: {fileID: 1450773873}
   speedSetWalkways:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1491298804}
+  - {fileID: 2041096070}
   changingWalkway: {fileID: 1440816542}
   uiSpeedGroup:
   - {fileID: 1621993194}
