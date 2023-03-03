@@ -34,7 +34,6 @@ public class Menu : MonoBehaviour
     public void ChangeWalkwayStyle(string style)
     {
         walkwayStyle = (WalkwayStyle)System.Enum.Parse(typeof(WalkwayStyle), style);
-        //reticle.GetComponent<Reticle>().ChangeReticleInto(walkwayStyle);
 
         hologramWalkway.SetActive(walkwayStyle == WalkwayStyle.Hologram);
         realisticNoSidesWalkway.SetActive(walkwayStyle == WalkwayStyle.RealisticNoSides);

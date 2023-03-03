@@ -19,12 +19,12 @@ public class StartingMode : MonoBehaviour
     public GameObject changingWalkway;
     public GameObject[] uiSpeedGroup;
     public GameObject[] uiModelGroup;
-    public Reticle reticle;
+    public WalkwayController walkwayController;
     public GameObject leftController;
 
     void Start()
     {
-        reticle.ChangeWalkwaySpeed(SliderValueSaver.loadValue());
+        walkwayController.ChangeWalkwaySpeed(SliderValueSaver.loadValue());
         switch(Style)
         {
             case Mode.MovingWalkway:
